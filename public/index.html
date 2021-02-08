@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Dynamis FileUpload Task</title>
+    <style>
+      .container {
+        height: 100px;
+        width: 50%;
+        display: flex;
+        margin: 100px auto;
+        flex-direction: column;
+        justify-content: center;
+        background-color: lightgray;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form action="/file" method="post" enctype="multipart/form-data">
+        <input type="file" name="uploadFile" id="uploadFile" required />
+        <input type="submit" name="submit" value="upload" />
+        <input
+          id="fileSize"
+          style="display: none"
+          name="fileSize"
+          type="text"
+        />
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("uploadFile").addEventListener("change", () => {
+        var uploadingFile = document.getElementById("uploadFile");
+
+        if (uploadingFile.files.length > 0) {
+          for (var i = 0; i <= uploadingFile.files.length - 1; i++) {
+            var uploadingFileSize = uploadingFile.files.item(i).size;
+
+            var fileSizeInKB = (uploadingFileSize / 1024).toFixed(2);
+
+            document.getElementById("fileSize").value = fileSizeInKB;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
