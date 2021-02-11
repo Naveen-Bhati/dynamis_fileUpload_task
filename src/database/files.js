@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
+const url = process.env.PROD_MONGODB_URL || process.env.DEV_MONGODB_URL;
 //connecting database with database name "files_Details"
 mongoose
-  .connect("mongodb://localhost:27017/files_Details", {
+  .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

@@ -1,8 +1,10 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const http = require("http");
 const path = require("path");
 const upload = require("express-fileupload"); //requiring "express-fileupload dependency for uploading file into directory"
-const port = process.env.port || 3000;
+dotenv.config();
+const port = process.env.PRODUCTION_URL || process.env.DEVELOPMENT_URL;
 const app = express();
 const fileDetail = require("./database/files"); //importing filedetails from mongoose js file
 const server = http.createServer(app);
@@ -18,7 +20,8 @@ app.post("/file", async (req, res) => {
   if (req.files) {
     var file = req.files.uploadFile;
     fileName = file.name;
-    uploadPath = __dirname + "/uploadedFiles/" + file.name;
+
+    uploadPath = __dirname + "/uploadedFiles/" + fileName;
 
     file.mv(uploadPath, (err) => {
       if (err) {
