@@ -3,6 +3,18 @@ const dotenv = require("dotenv");
 const http = require("http");
 const path = require("path");
 const upload = require("express-fileupload"); //requiring "express-fileupload dependency for uploading file into directory"
+//const multer = require("multer");
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, ');
+//   },
+//   filename: (req, file, cb) => {
+//     const { originalName } = file;
+//     cb(null, originalName);
+//   },
+// });
+
+// const upload = multer({ storage });
 dotenv.config();
 const port = process.env.PROD_PORT || process.env.DEV_PORT;
 const app = express();
@@ -22,6 +34,7 @@ app.post("/file", async (req, res) => {
     fileName = file.name;
 
     uploadPath = __dirname + "/uploadedFiles/" + fileName;
+    console.log(uploadPath);
 
     file.mv(uploadPath, (err) => {
       if (err) {
