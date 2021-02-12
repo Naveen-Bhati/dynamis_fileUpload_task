@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv").config();
 
 const url = process.env.PROD_MONGODB_URL || process.env.DEV_MONGODB_URL;
 //connecting database with database name "files_Details"

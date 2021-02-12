@@ -4,7 +4,7 @@ const http = require("http");
 const path = require("path");
 const upload = require("express-fileupload"); //requiring "express-fileupload dependency for uploading file into directory"
 dotenv.config();
-const port = process.env.PRODUCTION_URL || process.env.DEVELOPMENT_URL;
+const port = process.env.PROD_PORT || process.env.DEV_PORT;
 const app = express();
 const fileDetail = require("./database/files"); //importing filedetails from mongoose js file
 const server = http.createServer(app);
